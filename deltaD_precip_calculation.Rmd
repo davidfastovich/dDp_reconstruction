@@ -136,7 +136,7 @@ epsilon_c3_mean <- -113
 epsilon_c3_sd <- 2
 
 # Read in data
-gc27 <- read.table("~/Downloads/tierney2017gc27.txt", skip = 111, header = TRUE)
+gc27 <- read.table("tierney2017gc27.txt", skip = 111, header = TRUE)
 
 # Prepare output list - it will be structured as a list of lists with entries
 # 1 to the length of the gc27$dDwax_iv corresponding to each dD_wax sample.
