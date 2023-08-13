@@ -1,0 +1,177 @@
+# West African Margin 25,000 Year Leaf Wax Isotope Data and Precipitation Reconstruction
+#----------------------------------------------------------------------- 
+#                World Data Service for Paleoclimatology, Boulder 
+#                                  and 
+#                     NOAA Paleoclimatology Program 
+#             National Centers for Environmental Information (NCEI)
+#----------------------------------------------------------------------- 
+# Template Version 2.0
+# NOTE: Please cite original publication, online resource and date accessed when using this data.
+# If there is no publication information, please cite Investigator, title, online resource and date accessed.
+#
+# Description/Documentation lines begin with #
+# Data lines have no #
+#
+# Online_Resource: http://www.ncdc.noaa.gov/paleo/study/21091
+# Online_Resource: http://www1.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/tierney2017/tierney2017gc27.txt
+#
+# Archive: Paleoceanography
+#
+# Parameter_Keywords: biomarkers
+#---------------------------------------
+# Contribution_Date
+#    Date: 2017-01-18
+#---------------------------------------
+# Title
+#    Study_Name: West African Margin 25,000 Year Leaf Wax Isotope Data and Precipitation Reconstruction
+#---------------------------------------
+# Investigators
+#      Investigators: Tierney, J.; Pausata, F.; deMenocal, P.
+#---------------------------------------
+# Description and Notes
+#        Description: Leaf wax isotope (dD and d13C) and West African precipitation reconstruction from 4 West African Margin marine sediment cores. 
+#---------------------------------------
+# Publication
+# Authors: Jessica E. Tierney, Francesco S.R. Pausata, Peter B. deMenocal
+# Published_Date_or_Year: 2017-01-18 
+# Published_Title: Rainfall Regimes of the Green Sahara
+# Journal_Name: Science Advances
+# Volume: 3
+# Edition: 
+# Issue: 1
+# Pages: 
+# Report Number: e1601503
+# DOI: 10.1126/sciadv.1601503 
+# Online_Resource: http://advances.sciencemag.org/content/3/1/e1601503
+# Full_Citation: 
+# Abstract: During the "Green Sahara" period (11,000 to 5000 years before the present), the Sahara desert received high amounts of rainfall, supporting diverse vegetation, permanent lakes, and human populations. Our knowledge of rainfall rates and the spatiotemporal extent of wet conditions has suffered from a lack of continuous sedimentary records. We present a quantitative reconstruction of western Saharan precipitation derived from leaf wax isotopes in marine sediments. Our data indicate that the Green Sahara extended to 31N and likely ended abruptly. We find evidence for a prolonged "pause" in Green Sahara conditions 8000 years ago, coincident with a temporary abandonment of occupational sites by Neolithic humans. The rainfall rates inferred from our data are best explained by strong vegetation and dust feedbacks; without these mechanisms, climate models systematically fail to reproduce the Green Sahara. This study suggests that accurate simulations of future climate change in the Sahara and Sahel will require improvements in our ability to simulate vegetation and dust feedbacks.
+#---------------------------------------
+# Funding_Agency
+#    Funding_Agency_Name: National Science Foundation
+#    Grant: OCE-1203892, OCE-0402348
+#---------------------------------------
+# Funding_Agency
+#    Funding_Agency_Name: David and Lucile Packard Foundation
+#    Grant: 
+#---------------------------------------
+# Funding_Agency
+#    Funding_Agency_Name: Swedish Research Council
+#    Grant: Palaeo-constraints on Monsoon Evolution and Dynamics (PACMEDY)
+#---------------------------------------
+# Site Information
+# Site_Name: OCE437-7 GC27
+# Location: Ocean>Atlantic Ocean>North Atlantic Ocean
+# Country: 
+# Northernmost_Latitude: 30.88
+# Southernmost_Latitude: 30.88
+# Easternmost_Longitude: -10.63
+# Westernmost_Longitude: -10.63
+# Elevation: -1258
+#---------------------------------------
+# Data_Collection
+#   Collection_Name: Tierney2017GC27
+#   First_Year: 28847
+#   Last_Year: 867
+#   Time_Unit: cal yr BP
+#   Core_Length: 
+#   Notes: 
+#---------------------------------------
+# Chronology_Information 
+# Chronology: 
+# 
+# depth_top	depth_bottom	MaterialDated	14C.raw	14C.raw_err	datemeth	calib_curve	delta-R	delta-R_1sig	calib.14C  	calib.14C_1sig	calib_method 	rejected 	
+# 0	1	G. bulloides/mixed planktonic forams	1035	64	14C AMS	Marine13	130	25	523	58	OxCal 4.2	no	
+# 4	5	G. bulloides/mixed planktonic forams	1790	61	14C AMS	Marine13	130	25	1216	69	OxCal 4.2	no	
+# 30	31	G. bulloides/mixed planktonic forams	5990	35	14C AMS	Marine13	130	25	6277	49	OxCal 4.2	no	
+# 60	61	G. bulloides/mixed planktonic forams	10390	130	14C AMS	Marine13	130	25	11272	194	OxCal 4.2	no	
+# 77	78	G. bulloides/mixed planktonic forams	12110	60	14C AMS	Marine13	130	25	13439	79	OxCal 4.2	no	
+# 92	93	G. bulloides/mixed planktonic forams	14800	94.5	14C AMS	Marine13	130	25	17280	148	OxCal 4.2	no	
+# 119	129	G. bulloides/mixed planktonic forams	17240	90	14C AMS	Marine13	130	25	20197	134	OxCal 4.2	no	
+# 
+#---------------------------------------
+# Variables
+# Data variables follow that are preceded by "##" in columns one and two.
+# Variables list, one per line, shortname-tab-longname components (9 components: what, material, error, units, seasonality, archive, detail, method, C or N for Character or Numeric data)
+## depth_cm	depth in core,,,cm,,Paleoceanography,,,N
+## age_BP	age,,,year BP,,Paleoceanography,,,N
+## dDwax	hydrogen isotopic composition of higher plant leaf waxes (C30 n-acid),,,per mil vs. VSMOW,Annual,Paleoceanography,,compound-specific isotope ratio mass spectrometry,N
+## dDwax_iv	hydrogen isotopic composition of higher plant leaf waxes (C30 n-acid), corrected for ice volume contributions,,,per mil vs. VSMOW,Annual,Paleoceanography,,IV correction from scaling benthic stack (LR04) to LGM change of 1 per mil in d18O space,N
+## d13Cwax	carbon isotopic composition of higher plant leaf waxes (C30 n-acid),,,per mil vs. VPDB,Annual,Paleoceanography,,compound-specific isotope ratio mass spectrometry,N
+## dDP	inferred dD of precipitation, from dDwax and d13Cwax, median values,,,per mil vs. VSMOW,Annual,Paleoceanography,,Bayesian inference,N
+## dDP_1s_lower	1-sigma lower bound on dDP,,,per mil vs. VSMOW,Annual,Paleoceanography,,Bayesian inference,N
+## dDP_1s_upper	1-sigma upper bound on dDP,,,per mil vs. VSMOW,Annual,Paleoceanography,,Bayesian inference,N
+## precip	inferred annual precipitation rate from dDP, median values,,,mm/year,Annual,Paleoceanography,,Bayesian inference,N
+## precip_1s_lower	1-sigma lower bound on precipitation rate,,,mm/year,Annual,Paleoceanography,,Bayesian inference,N
+## precip_1s_upper	1-sigma upper bound on precipitation rate,,,mm/year,Annual,Paleoceanography,,Bayesian inference,N
+#------------------------
+# Data
+# Data lines follow (have no #)
+# Data line format - tab-delimited text, variable short name as header
+# Missing Value: 
+#
+depth_cm	age_BP	dDwax	dDwax_iv	d13Cwax	dDP	dDP_1s_lower	dDP_1s_upper	precip	precip_1s_lower	precip_1s_upper	
+2.5	867	-130.2	-130.2	-30.64	-16.6	-19.5	-13.6	129	72	222
+5.5	1345	-135.3	-135.2	-31.13	-22.8	-25.7	-19.9	383	220	628
+9.5	2133	-131.7	-131.6	-30.85	-18.6	-21.3	-15.6	184	103	299
+11.5	2535	-131.9	-131.9	-30.33	-18.1	-21.2	-15.3	177	105	307
+14.5	3141	-132.1	-132.3	-30.07	-18.3	-20.9	-15.7	171	101	284
+17.5	3745	-132.3	-132.6	-30.1	-18.5	-21.4	-15.7	181	105	313
+19.5	4148	-135.4	-135.6	-30.41	-22.4	-25.3	-19.6	355	216	588
+20.5	4351	-134.8	-135.0	-30.17	-21.6	-24.4	-18.7	308	185	517
+21.5	4551	-135.1	-135.3	-30.11	-21.7	-24.8	-18.7	303	176	501
+22.5	4753	-135.4	-135.6	-30.4	-22.2	-25.3	-19.3	330	203	541
+23.5	4954	-135	-135.1	-30.15	-21.6	-24.6	-18.5	308	188	496
+24.5	5156	-139.7	-139.9	-30.02	-26.7	-29.6	-23.9	745	456	1235
+26.5	5558	-136.4	-136.7	-30.01	-23.1	-26.0	-20.3	396	237	635
+28.5	5958	-139.5	-139.9	-29.31	-25.9	-29.1	-23.5	656	388	1114
+30.5	6277	-135.9	-136.3	-29.21	-21.9	-24.8	-19.0	316	190	540
+32.5	6553	-141.5	-142.0	-29.29	-28.3	-31.3	-25.6	1000	601	1651
+34.5	6894	-138	-138.5	-28.8	-24.0	-27.0	-21.3	456	279	758
+36.5	7237	-145.1	-145.7	-28.66	-32.1	-34.9	-29.2	1767	1023	2913
+39.5	7752	-145	-145.7	-28.92	-32.1	-35.0	-29.4	1870	1100	3065
+42.5	8270	-145.1	-145.8	-28.45	-31.9	-34.7	-29.0	1593	932	2711
+45.5	8785	-142.4	-143.0	-27.85	-27.8	-30.9	-24.9	933	545	1559
+47.5	9129	-144.7	-145.3	-27.97	-30.9	-33.9	-28.1	1462	841	2488
+49.5	9472	-146.3	-147.1	-28.27	-33.4	-36.1	-30.2	2132	1226	3411
+51.5	9817	-136.8	-137.8	-28.49	-23.0	-25.9	-20.0	390	232	639
+53.5	10159	-136.9	-138.1	-27.7	-22.1	-25.3	-19.5	346	210	577
+55.5	10498	-133	-134.3	-27.98	-18.3	-21.5	-15.2	178	104	299
+58.5	10995	-136.3	-137.7	-27.7	-21.9	-24.7	-18.9	315	190	535
+59.5	11146	-130.5	-132.1	-28.1	-15.7	-18.9	-13.2	118	68	193
+60.5	11272	-131	-132.8	-28.48	-17.2	-20.1	-14.3	139	79	240
+61.5	11398	-127.4	-129.3	-27.92	-12.5	-15.7	-9.5	65	35	113
+62.5	11529	-125.4	-127.5	-28.32	-11.2	-14.0	-8.0	53	26	92
+63.5	11658	-129	-131.3	-28.17	-15.0	-18.1	-12.2	97	58	161
+65.5	11919	-124.4	-127.0	-28.24	-10.1	-13.1	-7.4	47	26	78
+67.5	12181	-129.2	-132.0	-28.9	-16.6	-19.5	-13.6	136	79	224
+69.5	12444	-129.8	-132.7	-28.45	-17.0	-19.7	-14.0	143	86	235
+73.5	12969	-125.7	-128.9	-28.57	-13.0	-15.9	-9.9	71	37	128
+76.5	13345	-130.1	-133.6	-28.29	-17.9	-20.8	-15.1	167	93	269
+78.5	13623	-128.3	-132.1	-28.4	-16.0	-19.1	-13.3	121	72	199
+80.5	14146	-130.5	-134.7	-28.23	-19.2	-22.2	-16.4	204	120	338
+81.5	14415	-133	-137.4	-27.98	-21.7	-24.9	-18.9	311	188	512
+83.5	14955	-128.5	-133.4	-28.35	-17.6	-20.6	-14.9	166	95	281
+85.5	15497	-126.1	-131.5	-28.33	-15.4	-18.6	-12.6	110	66	185
+86.5	15769	-127.1	-132.8	-28.42	-17.2	-20.0	-14.0	144	81	234
+89.5	16575	-125	-131.2	-28.67	-15.7	-18.4	-12.6	116	68	183
+91.5	17086	-125.3	-131.8	-28.74	-16.3	-19.1	-13.4	126	73	210
+93.5	17382	-125	-131.6	-28.54	-15.8	-19.0	-13.0	118	70	198
+96.5	17695	-122.6	-129.4	-28.96	-13.7	-16.7	-10.8	80	48	132
+99.5	18023	-122.1	-129.1	-28.91	-13.4	-16.2	-10.8	79	45	131
+101.5	18244	-124.2	-131.1	-28.1	-14.7	-17.7	-12.0	96	59	156
+104.5	18575	-120.7	-127.6	-28.31	-11.1	-14.0	-8.2	50	28	88
+107.5	18908	-124.5	-131.3	-28.22	-15.0	-18.1	-11.9	97	55	167
+111.5	19351	-118.6	-125.4	-28.04	-8.3	-11.2	-5.4	32	17	56
+114.5	19681	-121.1	-127.9	-28.39	-11.6	-14.4	-8.7	59	34	95
+117.5	20002	-121.9	-128.8	-28.38	-12.5	-15.4	-9.7	69	40	114
+120.5	20332	-123.3	-130.1	-28.51	-14.2	-17.0	-11.3	91	52	148
+126.5	21305	-121.5	-128.1	-28.29	-11.5	-14.5	-8.6	60	34	100
+131.5	22142	-124.1	-130.6	-28.15	-14.3	-17.1	-11.4	90	52	148
+136.5	22978	-120.9	-127.3	-28.39	-10.9	-13.8	-7.9	50	27	85
+141.5	23817	-121.5	-127.9	-28.32	-11.2	-14.1	-8.5	54	30	93
+146.5	24655	-120.4	-126.7	-28.15	-9.8	-13.0	-7.1	45	26	75
+151.5	25494	-121.4	-127.6	-28.21	-11.1	-14.1	-8.0	51	27	89
+156.5	26331	-121.1	-127.3	-28.27	-10.8	-13.5	-7.9	50	27	82
+161.5	27171	-122.6	-128.8	-28.09	-12.3	-15.1	-9.3	63	34	105
+166.5	28010	-121.3	-127.2	-28.39	-10.7	-13.7	-7.9	49	28	85
+171.5	28847	-124.6	-130.3	-28.52	-14.2	-17.4	-11.4	92	52	154

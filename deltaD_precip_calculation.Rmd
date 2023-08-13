@@ -1,0 +1,194 @@
+---
+title: "Calcuating δD of precipitation from δD of leaf waxes"
+output: html_document
+author: David Fastovich
+---
+
+# Introduction
+
+This script takes in $\delta\mathrm{D}_{wax}$ and transforms it into  $\delta\mathrm{D}_{precip}$ in a Bayesian framework informed by the physiology of plant fractionation of hydrogen isotopes. This was approach was first formalized in Tierney et al., (2017, Science Advances) and has since been used a variety of studies that use $\delta\mathrm{D}_{wax}$. Importantly, this procedure assumes that vegetation is largely unchaged over the duration of the time series which can be assessed by plotting the  $\delta^{13}\mathrm{C}_{wax}$ against time.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Bayesian Approach
+
+See Tierney et al.,  (2017, Science Advances) for the mathematical basis, but briefly the equations used here:
+
+**Equations to calculate $\delta D_{p}$**
+
+(1) $\delta D_{p} = \frac{1000 + \delta D_{wax}}{\frac{\epsilon_{p}}{1000} + 1} - 1000$
+
+(2) $\epsilon_{p} = f_C4 \times \epsilon_{C4} + (1 - f_{C4}) \times \epsilon_{C3}$
+
+(3) $Y = (\frac{\delta^{13}C_{wax} - \delta^{13}C_{C3}}{\delta^{13}C_{C4} - \delta^{13}C_{C3}}) \times N$
+
+**Prior distrubtion for model parameters ($\theta$; i.e. $f_{C4}$):**
+
+$p(\theta) = \theta^{\alpha - 1}(1 - \theta)^{\beta - 1}$
+
+**Posterior distribution which we will be sampling:**
+
+$p(\theta | Y) \propto \theta^{Y + \alpha - 1} (1 - \theta)^{N - Y + \beta - 1}$
+
+We will be assuming an uninformed prior, hence $\alpha = 1$ and $\beta = 1$
+
+# Resampling Algorithm
+
+1. Sample $C_3$ and $C_4$ $\delta^{13}\mathrm{C}$ end-member values. Here, taken from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.).
+
+```{r, eval=FALSE}
+# First set N - the number of plants contributing to the observed measurement,
+# assumed to be large here
+N <- 5000
+
+# Value from Garcin et al., (2014, Geochim. Cosmochim. Acta)
+d13c_c4_mean <- -19.8
+d13c_c4_sd <- 0.4
+
+# Value from Garcin et al., (2014, Geochim. Cosmochim. Acta)
+d13c_c3_mean <- -33.4
+d13c_c3_sd <- 0.4
+
+# Sample from a normal distribution
+d13c_c4_sample <- rnorm(N, mean = d13c_c4_mean, sd = d13c_c4_sd)
+d13c_c3_sample <- rnorm(N, mean = d13c_c3_mean, sd = d13c_c3_sd)
+```
+
+2. Calculate $Y$ using Equation 3.
+
+```{r, eval=FALSE}
+y = ((D13C_WAX_VALUE_GOES_HERE - d13c_c3_sample)/(d13c_c4_sample - d13c_c3_sample)) * N
+```
+
+3. Sample the posterior beta distribution.
+
+```{r, eval=FALSE}
+# Sample posterior for fraction of C4 plants
+# Using sapply here because we want a beta distribution sample for each of the N
+# values we calculated in Step 2.
+f_c4 <- sapply(Y, function(y) rbeta(1, shape1 = y + 1 - 1, shape2 = N - y + 1 - 1))
+```
+
+4. Monte-Carlo resampling to propagate errors from $\epsilon_{C3}$, $\epsilon_{C4}$, and $\delta D_{wax}$ measurements and calculate $\epsilon_{p}$ from Equation 2.
+
+```{r, eval=FALSE}
+# Value from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+epsilon_c4_mean <- -126
+epsilon_c4_sd <- 4
+
+# Value from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+epsilon_c3_mean <- -113
+epsilon_c3_sd <- 2
+
+# Sample epsilon value end members from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+epsilon_c4_sample <- rnorm(1, mean = epsilon_c4_mean, sd = epsilon_c4_sd)
+epsilon_c3_sample <- rnorm(1, mean = epsilon_c3_mean, sd = epsilon_c3_sd)
+
+# Sample dD of sample - assuming 2 per mil standard deviation for analytical
+# uncertainty.
+dD_sample <- rnorm(N, mean = DELTA_D_WAX_VALUE_GOES_HERE, sd = 2)
+
+# Calculate epsilon_p
+epsilon_p <- f_c4 * epsilon_c4_sample + (1 - f_c4) * epsilon_c3_sample
+```
+
+5. With all model parameters in place, calculate $\delta D_{p}$ from $\delta D_{wax}$ using Equation 1.
+
+```{r, eval=FALSE}
+ensemble <- ((1000 + dD_sample) / ((epsilon_p/1000) + 1)) - 1000
+```
+
+As written, this code will provide an ensemble of 5,000 estimates of $\delta D_{p}$ for a single pair of $\delta D_{wax}$ and $\delta^{13}C_{wax}$ measurements. In practice, that's now how we want this code to work. We want to feed in an entire spreadsheet and have the results exported in another spreadsheet. Below is a code chunk that can make this happen with data from Tierney et al., (2017, Science Advances).
+
+# Application
+
+All of the code chunks above where set to `eval=FALSE` meaning that they did not run, so I'm coping a lot of that code here. This means that whoever is reading this can simply copy and paste the code chunk below, save it as a .R file, and it will run!
+
+```{r, eval=FALSE}
+# Setting seed to make sure the random numbers stay constant for this script
+set.seed(1)
+
+# First set N - the number of plants contributing to the observed measurement,
+# assumed to be large here.
+N <- 5000
+
+# Define the number of iterations (i.e. resamples). Note, I am doing all
+# calculations in vector form here, so I never iterate i to the end of iter.
+# Rather, I use `iter` to define the number of draws from each distribution
+iter <- 1000
+
+# Value from Garcin et al., (2014, Geochim. Cosmochim. Acta)
+d13c_c4_mean <- -19.8
+d13c_c4_sd <- 0.4
+
+# Value from Garcin et al., (2014, Geochim. Cosmochim. Acta)
+d13c_c3_mean <- -33.4
+d13c_c3_sd <- 0.4
+
+# Value from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+epsilon_c4_mean <- -126
+epsilon_c4_sd <- 4
+
+# Value from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+epsilon_c3_mean <- -113
+epsilon_c3_sd <- 2
+
+# Read in data
+gc27 <- read.table("~/Downloads/tierney2017gc27.txt", skip = 111, header = TRUE)
+
+# Prepare output list - it will be structured as a list of lists with entries
+# 1 to the length of the gc27$dDwax_iv corresponding to each dD_wax sample.
+output <- list(
+  delta_D_precip = list(),
+  f_c4 = list(),
+  epsilon_precip = list()
+)
+
+# Iterate through each ice-corrected measurement of delta D_{wax}
+for(i in 1:length(gc27$dDwax_iv)){
+  # Sample d13C end members from Garcin et al., (2014, Geochim. Cosmochim. Acta)
+  d13c_c4_sample <- rnorm(iter, mean = d13c_c4_mean, sd = d13c_c4_sd)
+  d13c_c3_sample <- rnorm(iter, mean = d13c_c3_mean, sd = d13c_c3_sd)
+  
+  # Sample epsilon value end members from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.)
+  epsilon_c4_sample <- rnorm(iter, mean = epsilon_c4_mean, sd = epsilon_c4_sd)
+  epsilon_c3_sample <- rnorm(iter, mean = epsilon_c3_mean, sd = epsilon_c3_sd)
+  
+  # Sample dD of sample
+  dD_sample <- rnorm(iter, mean = gc27$dDwax_iv[i], sd = 2)
+  
+  # Calculate y
+  Y = ((rep(gc27$d13Cwax[i], iter) - d13c_c3_sample)/(d13c_c4_sample - d13c_c3_sample)) * N
+  
+  # Sample posterior for fraction of C4 plants
+  f_c4 <- sapply(Y, function(y) rbeta(1, shape1 = y + 1 - 1, shape2 = N - y + 1 - 1))
+  
+  # Monte carlo resampling for epsilon_p
+  epsilon_p <- f_c4 * epsilon_c4_sample + (1 - f_c4) * epsilon_c3_sample
+  
+  # Monte Carlon resampling for dD_precip
+  delta_D_precip_ensemble <- ((1000 + dD_sample) / ((epsilon_p/1000) + 1)) - 1000
+  
+  # Writing to our output list
+  output$delta_D_precip[[i]] <- delta_D_precip_ensemble
+  output$f_c4[[i]] <- f_c4
+  output$epsilon_precip[[i]] <- epsilon_p
+}
+
+# Let's get summary statistics from our output list
+results <- data.frame(
+  dDP = sapply(X = output$delta_D_precip, FUN = mean),
+  dDP_1s_lower = sapply(X = output$delta_D_precip, FUN = function(x) mean(x) - sd(x)),
+  dDP_1s_lower = sapply(X = output$delta_D_precip, FUN = function(x) mean(x) + sd(x))
+)
+
+# And compare against the results that are within the Tierney et al., (2017, 
+# Science Advances) data file.
+mean(gc27$dDP - results$dDP)
+mean(gc27$dDP - results$dDP)
+mean(gc27$dDP - results$dDP)
+
+# The difference is 0.01968102 - so its safe to say we've replicated the results
+```
