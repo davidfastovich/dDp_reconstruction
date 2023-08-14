@@ -36,7 +36,7 @@ We will be assuming an uninformed prior, hence $\alpha = 1$ and $\beta = 1$
 
 # Resampling Algorithm
 
-1. Sample $C_3$ and $C_4$ $\delta^{13}\mathrm{C}$ end-member values. Here, taken from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.).
+1. Sample $C_3$ and $C_4$ $\delta^{13}\mathrm{C}$ end-member values. Here, taken from Garcin et al., (2014, Geochim. Cosmochim. Acta) to match the values used in Tierney et al., (2017, Science Advances). In practice, the database from Sachse et al., (2012, Annu. Rev. Earth Planet. Sci.) is probably more appropriate for global studies if a local survey of plants has not be done.
 
 ```{r, eval=FALSE}
 # First set N - the number of plants contributing to the observed measurement,
@@ -186,8 +186,6 @@ results <- data.frame(
 
 # And compare against the results that are within the Tierney et al., (2017, 
 # Science Advances) data file.
-mean(gc27$dDP - results$dDP)
-mean(gc27$dDP - results$dDP)
 mean(gc27$dDP - results$dDP)
 
 # The difference is 0.01968102 - so its safe to say we've replicated the results
