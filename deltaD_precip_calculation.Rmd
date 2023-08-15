@@ -181,12 +181,14 @@ for(i in 1:length(gc27$dDwax_iv)){
 results <- data.frame(
   dDP = sapply(X = output$delta_D_precip, FUN = mean),
   dDP_1s_lower = sapply(X = output$delta_D_precip, FUN = function(x) mean(x) - sd(x)),
-  dDP_1s_lower = sapply(X = output$delta_D_precip, FUN = function(x) mean(x) + sd(x))
+  dDP_1s_upper = sapply(X = output$delta_D_precip, FUN = function(x) mean(x) + sd(x))
 )
 
 # And compare against the results that are within the Tierney et al., (2017, 
 # Science Advances) data file.
 mean(gc27$dDP - results$dDP)
+mean(gc27$dDP_1s_lower - results$dDP_1s_lower)
+mean(gc27$dDP_1s_upper - results$dDP_1s_upper)
 
-# The difference is 0.01968102 - so its safe to say we've replicated the results
+# The difference is -0.01968102, 0.156859, and -0.2746825 - so its safe to say we've replicated the results
 ```
